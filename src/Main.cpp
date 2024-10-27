@@ -22,7 +22,7 @@ int main() {
 	try {
 		glfwInit();
 
-		Window window(1024, 576, false, "Solar Simulation");
+		Window window(512, 512, false, "Facial Expressions");
 		window.Launch();
 
 		InputHandler inputHandler(window.getGLWindow());
@@ -37,7 +37,8 @@ int main() {
 
 		vao.Unbind();
 
-		Camera camera(glm::vec3(30, 20, 90), 45.0f, 16.0/9.0, 0.1f, 1000.0f);
+		Camera camera(glm::vec3(-2, 3, 10), 30.0f, 1.0f, 0.1f, 1000.0f);
+		camera.LookAt(glm::vec3(0, 0, 0));
 
 		Color backgroundColor(0.3, 0.4, 0.5, 1.0f);
 
