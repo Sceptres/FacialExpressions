@@ -30,7 +30,7 @@ int main() {
 		debug.ApplyToInputHandler(inputHandler);
 		capturer.ApplyToInputHandler(inputHandler);
 
-		ShaderProgram shaderProgram("shaders/default.vert", "shaders/default.frag");
+		ShaderProgram shaderProgram("resources/shaders/default.vert", "resources/shaders/default.frag");
 
 		VAO vao;
 		vao.Bind();
