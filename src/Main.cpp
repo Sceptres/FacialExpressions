@@ -1,3 +1,7 @@
+#ifndef TINYOBJLOADER_IMPLEMENTATION
+#define TINYOBJLOADER_IMPLEMENTATION
+#endif
+
 #include <iostream>
 #include <string>
 #include <glad/glad.h>
@@ -14,6 +18,8 @@
 #include "debug/DebugFilter.hpp"
 #include "window/Window.hpp"
 #include "color/Color.hpp"
+#include "mesh/Mesh.hpp"
+#include "entity/face/Face.hpp"
 
 DebugFilter debug;
 PPMCapture capturer;
@@ -32,13 +38,19 @@ int main() {
 
 		ShaderProgram shaderProgram("resources/shaders/default.vert", "resources/shaders/default.frag");
 
-		VAO vao;
-		vao.Bind();
+		Mesh faceMesh("resources/meshes/faces/base.obj");
+		faceMesh.GLInit();
 
-		vao.Unbind();
+		Face face(
+			&faceMesh,
+			glm::vec3(0, 0, 0),
+			1.0f,
+			0.0f,
+			glm::vec3(0, 0, 0)
+		);
 
-		Camera camera(glm::vec3(-2, 3, 10), 30.0f, 1.0f, 0.1f, 1000.0f);
-		camera.LookAt(glm::vec3(0, 0, 0));
+		Camera camera(glm::vec3(20, 100, 200), 30.0f, 1.0f, 0.1f, 1000.0f);
+		camera.LookAt(glm::vec3(0, 110, 0));
 
 		Color backgroundColor(0.3, 0.4, 0.5, 1.0f);
 
@@ -51,16 +63,14 @@ int main() {
 			debug.HandleDebugShader(shaderProgram);
 			camera.Apply(shaderProgram);
 
-			vao.Bind();
-
-			vao.Unbind();
+			face.Render(shaderProgram);
 
 			window.SwapBuffers();
 
 			glfwPollEvents();
 		}
 
-		vao.Delete();
+		faceMesh.Delete();
 		shaderProgram.Delete();
 		glfwTerminate();
 
