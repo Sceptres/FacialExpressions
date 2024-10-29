@@ -3,7 +3,7 @@
 Entity::Entity(glm::vec3 initPosition, GLfloat scale, GLfloat angle, glm::vec3 rotateAxis) {
     this->position = glm::vec3(0.0);
     this->model = glm::mat4(1.0f);
-    this->scale = scale/2;
+    this->scale = scale;
     this->angle = angle;
     this->rotateAxis = rotateAxis;
     this->setPosition(initPosition);
