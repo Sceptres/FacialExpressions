@@ -9,7 +9,7 @@
 class EBO : public Buffer {
     public:
         EBO(GLuint indices[], GLsizeiptr size);
-        EBO(std::vector<GLuint> indices, GLsizeiptr size);
+        EBO(std::vector<GLuint>& indices, GLsizeiptr size);
         void Bind() const override;
         void Unbind() const override;
         void Delete() override;
