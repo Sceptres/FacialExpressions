@@ -50,8 +50,18 @@ void Window::Launch() {
     
     glfwSetFramebufferSizeCallback(window, Window::framebuffer_size_callback);
     glViewport(0, 0, this->width, this->height);
+
+    // Enable depth testing with GL_LESS depth function
     glEnable(GL_DEPTH_TEST);
-	glEnable(GL_MULTISAMPLE);
+	glDepthFunc(GL_LESS); 
+
+    // Enable multisampling
+    glEnable(GL_MULTISAMPLE);
+    
+    // Enable back face culling
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
 }
 
 void Window::ApplyCloseWindowToInputHandler(InputHandler& inputHandler) {
