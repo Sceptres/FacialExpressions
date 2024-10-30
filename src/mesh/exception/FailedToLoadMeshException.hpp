@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+/**
+ * A class that represents the failed loading of a mesh
+ */
 class FailedToLoadMeshException : public std::exception {
     public:
         FailedToLoadMeshException(const char* filePath) {

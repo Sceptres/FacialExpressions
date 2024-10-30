@@ -12,7 +12,7 @@ void InputHandler::AddKeyCallback(int key, std::function<void(GLFWwindow*)> func
 void InputHandler::ProcessInput() {
     for(auto const& [key, func] : this->keyFuncMap) {
         if(glfwGetKey(this->window, key) == GLFW_PRESS) {
-            if(!this->keyPressedMap[key]) {
+            if(!this->keyPressedMap[key]) { // Single click for button
                 func(this->window);
                 this->keyPressedMap[key] = true;
             }

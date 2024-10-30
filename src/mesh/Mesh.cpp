@@ -4,6 +4,7 @@ Mesh::Mesh(const char* source) {
     std::string warn, err;
     bool bTriangulate = true;
 
+    // Load obj mesh
     bool bSuc = tinyobj::LoadObj(
         &this->attrib,
         &this->shapes,
@@ -24,12 +25,14 @@ Mesh::Mesh(const char* source) {
         throw FailedToLoadMeshException(source);
     }
 
+    // Store verticies
     for(int i=0; i < this->attrib.vertices.size(); i+=3) {
         this->verticies.push_back(this->attrib.vertices[i]);
         this->verticies.push_back(this->attrib.vertices[i+1]);
         this->verticies.push_back(this->attrib.vertices[i+2]);
     }
 
+    // Store normals
     for(int i=0; i < this->attrib.normals.size(); i+=3) {
         this->normals.push_back(this->attrib.normals[i]);
         this->normals.push_back(this->attrib.normals[i+1]);
@@ -68,15 +71,19 @@ Mesh::~Mesh() {
 }
 
 void Mesh::GLInit() {
+    // Create VAO
     this->vao = new VAO();
     this->vao->Bind();
 
+    // Create VBO
     this->vbo = new VBO(this->meshData, this->meshData.size() * sizeof(GLfloat));
 
+    // Link VBO to VAO
     GLuint stride = 6 * sizeof(GLfloat);
     this->vao->LinkBuffers(0, stride, (void*) 0);
     this->vao->LinkBuffers(1, stride, (void*) (3 * sizeof(GLfloat)));
 
+    // Unbind both VAO and VBO
     this->vao->Unbind();
     this->vbo->Unbind();
 }

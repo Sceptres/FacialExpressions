@@ -21,32 +21,37 @@ ShaderProgram::ShaderProgram(const char* vertexShaderFile, const char* fragmentS
     int  success;
     char infoLog[512];
 
+    // Load vertex and fragment shader contents
     std::string vertexShaderStr = ShaderProgram::get_shader_content(vertexShaderFile);
     std::string fragmentShaderStr = ShaderProgram::get_shader_content(fragmentShaderFile);
-
     const char* vertexShaderSource = vertexShaderStr.c_str();
     const char* fragmentShaderSource = fragmentShaderStr.c_str();
 
+    // Create the vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
     if(!success) {
+        // Vertex shader creation has failed
         glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
+    // Create the fragment shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
     glCompileShader(fragmentShader);
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 
     if(!success) {
+        // Fragment shader creation has failed
         glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
         std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
+    // Create the shader program
     this->id = glCreateProgram();
     glAttachShader(this->id, vertexShader);
     glAttachShader(this->id, fragmentShader);
@@ -54,10 +59,12 @@ ShaderProgram::ShaderProgram(const char* vertexShaderFile, const char* fragmentS
     glGetProgramiv(this->id, GL_LINK_STATUS, &success);
 
     if(!success) {
+        // Shader program creation has failed
         glGetShaderInfoLog(this->id, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
     }
 
+    // Delete vertex and fragment shaders
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 }

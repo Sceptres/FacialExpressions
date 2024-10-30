@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+/**
+ * A class representing an exception when the glad failed to load
+ */
 class GladInitFailedException : public std::exception {
     public:
         const char* what() const noexcept override {

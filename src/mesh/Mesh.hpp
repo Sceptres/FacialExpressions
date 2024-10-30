@@ -9,16 +9,62 @@
 #include "../buffer/EBO/EBO.hpp"
 #include "../array/VAO.hpp"
 
+/**
+ * The class representing a Wavefront obj mesh
+ */
 class Mesh {
     public:
+        /**
+         * Instantiate a mesh given its path
+         * 
+         * @param[in] source The path to the wavefront obj mesh
+         */
         Mesh(const char* source);
+
+        /**
+         * Mesh destructor that deletes VAO and VBO instances
+         */
         ~Mesh();
+        
+        /**
+         * Initialize the OpenGL components of the mesh
+         */
         void GLInit();
+
+        /**
+         * Access method to the amount of vertices in the mesh
+         * 
+         * @returns The number of unique vertices in the mesh
+         */
         GLuint getVertexCount();
+
+        /**
+         * Access method to the amount of normals in the mesh
+         * 
+         * @returns The number of unique normals in the mesh
+         */
         GLuint getNormalCount();
+        
+        /**
+         * Access method to the amount of data points in the mesh
+         * 
+         * @returns The number of data points in the mesh data
+         */
         GLuint getMeshDataSize();
+        
+        /**
+         * Binds the mesh VAO
+         */
         void Bind();
+        
+        /**
+         * Unbinds the mesh VAO
+         */
         void Unbind();
+        
+        /**
+         * Deletes the mesh VAO and VBO
+         */
         void Delete();
 
     private:

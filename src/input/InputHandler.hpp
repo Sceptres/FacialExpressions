@@ -8,10 +8,29 @@
 #include <map>
 #include <functional>
 
+/**
+ * A class representing the keyboard/mouse input handler of the system
+ */
 class InputHandler {
     public:
+        /**
+         * Instantiate the input handler
+         * 
+         * @param[in, out] window The window of the application
+         */
         InputHandler(GLFWwindow* window);
+
+        /**
+         * Registers a key and its click callback
+         * 
+         * @param[in] key The key to register
+         * @param[in] func The callback function to run when the key is clicked
+         */
         void AddKeyCallback(int key, std::function<void(GLFWwindow*)> func);
+
+        /**
+         * Processes all the registered keys input. This method should be called in the main loop.
+         */
         void ProcessInput();
 
     private:
