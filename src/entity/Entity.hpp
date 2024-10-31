@@ -35,6 +35,13 @@ class Entity {
         virtual void Rotate(glm::vec3 rotationAxis, GLfloat angle);
 
         /**
+         * A method that scales an entity by a certian factor
+         * 
+         * @param[in] scale The scaling factor
+         */
+        virtual void Scale(GLfloat scale);
+
+        /**
          * Renders the entity in the world
          * 
          * @param[out] shaderProgram The shader program to render the entity in
