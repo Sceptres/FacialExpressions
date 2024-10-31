@@ -23,6 +23,11 @@ void Entity::MoveTo(glm::vec3 newPosition) {
     this->setPosition(newPosition);
 }
 
+void Entity::Rotate(glm::vec3 rotationAxis, GLfloat angle) {
+    this->rotateAxis = rotationAxis;
+    this->angle = angle;
+}
+
 void Entity::UpdateShader(ShaderProgram& shaderProgram) {
     this->ApplyTransformations();
     shaderProgram.setMat4("model", this->model);

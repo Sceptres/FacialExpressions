@@ -27,6 +27,14 @@ class Entity {
         virtual void MoveTo(glm::vec3 newPosition);
 
         /**
+         * A method to rotate an entity by an angle around a certain axis
+         * 
+         * @param[in] rotationAxis The axis to rotate the entity around
+         * @param[in] angle The angle to rotate the entity by
+         */
+        virtual void Rotate(glm::vec3 rotationAxis, GLfloat angle);
+
+        /**
          * Renders the entity in the world
          * 
          * @param[out] shaderProgram The shader program to render the entity in
