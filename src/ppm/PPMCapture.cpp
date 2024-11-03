@@ -32,7 +32,7 @@ unsigned int PPMCapture::getId() {
 }
 
 void PPMCapture::ApplyToInputHandler(InputHandler& inputHandler) {
-    inputHandler.AddKeyCallback(GLFW_KEY_P, [this](GLFWwindow* window) {
+    inputHandler.AddKeyCallback(GLFW_KEY_P, false, [this](GLFWwindow* window) {
         this->Capture(window);
     });
 }

@@ -72,7 +72,7 @@ void Window::Launch() {
 }
 
 void Window::ApplyCloseWindowToInputHandler(InputHandler& inputHandler) {
-    inputHandler.AddKeyCallback(GLFW_KEY_ESCAPE, [this](GLFWwindow*) {
+    inputHandler.AddKeyCallback(GLFW_KEY_ESCAPE, false, [this](GLFWwindow*) {
         // Set the window to close
         glfwSetWindowShouldClose(this->window, GLFW_TRUE);
     });

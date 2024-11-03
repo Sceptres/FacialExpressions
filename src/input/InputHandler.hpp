@@ -24,9 +24,10 @@ class InputHandler {
          * Registers a key and its click callback
          * 
          * @param[in] key The key to register
+         * @param[in] holdable True if the key can be held down. False if it is only one click.
          * @param[in] func The callback function to run when the key is clicked
          */
-        void AddKeyCallback(int key, std::function<void(GLFWwindow*)> func);
+        void AddKeyCallback(int key, bool holdable, std::function<void(GLFWwindow*)> func);
 
         /**
          * Processes all the registered keys input. This method should be called in the main loop.
@@ -36,6 +37,7 @@ class InputHandler {
     private:
         GLFWwindow* window;
         std::map<int, std::function<void(GLFWwindow*)>> keyFuncMap;
+        std::map<int, bool> keyHoldableMap;
         std::map<int, bool> keyPressedMap;
 };
 

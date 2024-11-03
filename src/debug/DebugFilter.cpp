@@ -9,7 +9,7 @@ bool DebugFilter::IsInDebugMode() {
 }
 
 void DebugFilter::ApplyToInputHandler(InputHandler& inputHandler) {
-    inputHandler.AddKeyCallback(GLFW_KEY_B, [this](GLFWwindow* window) {
+    inputHandler.AddKeyCallback(GLFW_KEY_B, false, [this](GLFWwindow* window) {
         this->ToggleDebugMode(window);
     });
 }
