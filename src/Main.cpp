@@ -61,15 +61,19 @@ int main() {
 		inputHandler.AddKeyCallback(GLFW_KEY_UP, false, [&counter, &faceBlendMesh] (GLFWwindow* window) {
 			counter = (counter + 1) % 12;
 			faceBlendMesh.BlendMesh(counter);
+			std::cout << "Current Blend ID: " << counter << std::endl;
 		});
 
 		inputHandler.AddKeyCallback(GLFW_KEY_DOWN, false, [&counter, &faceBlendMesh] (GLFWwindow* window) {
 			if(counter > 0) {
 				counter -= 1;
 				faceBlendMesh.BlendMesh(counter % 12);
+				
+				std::cout << "Current Blend ID: " << counter << std::endl;
 			} else if(counter == 0) {
 				counter = -1;
 				faceBlendMesh.Reset();
+				std::cout << "Current Blend is Base Mesh" << std::endl;
 			}
 		});
 
