@@ -112,3 +112,7 @@ GLuint Mesh::getNormalCount() {
 GLuint Mesh::getMeshDataSize() {
     return this->meshData.size() / 6;
 }
+
+tinyobj::attrib_t& Mesh::getAttrib() {
+    return this->attrib;
+}

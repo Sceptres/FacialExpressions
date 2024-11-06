@@ -67,15 +67,22 @@ class Mesh {
          */
         void Delete();
 
-    private:
+        /**
+         * Access method to the attributes of this mesh
+         * 
+         * @return tinyobj::attrib_t The tinyobj::attrib_t object that holds the attributes of this mesh
+         */
+        tinyobj::attrib_t& getAttrib();
+
+    protected:
+        VAO* vao;
+        VBO* vbo;
         tinyobj::attrib_t attrib;
-        std::vector<tinyobj::shape_t> shapes;
-        std::vector<tinyobj::material_t> materials;
         std::vector<GLfloat> verticies;
         std::vector<GLfloat> normals;
         std::vector<GLfloat> meshData;
-        VAO* vao;
-        VBO* vbo;
+        std::vector<tinyobj::shape_t> shapes;
+        std::vector<tinyobj::material_t> materials;
 };
 
 #endif
