@@ -19,7 +19,9 @@
 #include "window/Window.hpp"
 #include "color/Color.hpp"
 #include "mesh/Mesh.hpp"
+#include "mesh/face/FaceMesh.hpp"
 #include "entity/face/Face.hpp"
+#include "weights/MeshWeight.hpp"
 
 DebugFilter debug;
 PPMCapture capturer;
@@ -38,11 +40,11 @@ int main() {
 
 		ShaderProgram shaderProgram("resources/shaders/default.vert", "resources/shaders/default.frag");
 
-		Mesh faceMesh("resources/meshes/faces/base.obj");
-		faceMesh.GLInit();
+		FaceMesh faceBlendMesh;
+		faceBlendMesh.GLInit();
 
 		Face face(
-			&faceMesh,
+			&faceBlendMesh,
 			glm::vec3(0, 0, 0),
 			1.0f,
 			0.0f,
@@ -53,6 +55,23 @@ int main() {
 		camera.LookAt(glm::vec3(0, 110, 0));
 
 		Color backgroundColor(0.3, 0.4, 0.5, 1.0f);
+
+		int counter = -1;
+
+		inputHandler.AddKeyCallback(GLFW_KEY_UP, false, [&counter, &faceBlendMesh] (GLFWwindow* window) {
+			counter = (counter + 1) % 12;
+			faceBlendMesh.BlendMesh(counter);
+		});
+
+		inputHandler.AddKeyCallback(GLFW_KEY_DOWN, false, [&counter, &faceBlendMesh] (GLFWwindow* window) {
+			if(counter > 0) {
+				counter -= 1;
+				faceBlendMesh.BlendMesh(counter % 12);
+			} else if(counter == 0) {
+				counter = -1;
+				faceBlendMesh.Reset();
+			}
+		});
 
 		while(!window.ShouldClose()) {
 			inputHandler.ProcessInput();
@@ -70,7 +89,7 @@ int main() {
 			glfwPollEvents();
 		}
 
-		faceMesh.Delete();
+		faceBlendMesh.Delete();
 		shaderProgram.Delete();
 		glfwTerminate();
 
