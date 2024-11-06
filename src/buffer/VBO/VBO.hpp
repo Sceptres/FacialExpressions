@@ -42,6 +42,14 @@ class VBO : public Buffer {
          */
         void Delete() override;
 
+        /**
+         * Updated the VBO data with a new dataset
+         * 
+         * @param[in] data The new data to update the VBO with
+         * @param[in] size The size of the new data
+         */
+        void UpdateData(std::vector<GLfloat>& data, GLsizeiptr size);
+
     private:
         GLuint id;
 };
