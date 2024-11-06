@@ -15,7 +15,6 @@ Makefile
 *.slo
 *.lo
 *.o
-*.obj
 
 # Compiled Main file
 FacialExpressions
