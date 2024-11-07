@@ -13,6 +13,10 @@ The app contains the following keyboard controls:
 4. Press the `up arrow key` to increase the blend id and see a new blend face mesh
 5. Press the `down arrow key` to decrease the blend id and see previously rendered blend face mesh
 
+Below is a youtube video showcasing the project.
+
+[![YouTube](http://i.ytimg.com/vi/PqMpzIRZ5i4/hqdefault.jpg)](https://www.youtube.com/watch?v=PqMpzIRZ5i4)
+
 ## Setup
 To setup the project, you need to setup the GLFW3, GLAD, GLM, and TinyObjLoader libraries. Follow the steps in the following link to setup GLFW3, GLAD, and other system specific dependencies, https://learnopengl.com/Getting-started/Creating-a-window. Furthermore, the `glad.c` file must be placed in the `src/` folder. You can use the official glm github page to install and setup the library https://github.com/g-truc/glm. For the TinyObjLoader library, you can visit the github repo here to see its setup https://github.com/tinyobjloader/tinyobjloader.
 
