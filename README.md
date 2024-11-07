@@ -18,8 +18,8 @@ To setup the project, you need to setup the GLFW3, GLAD, GLM, and TinyObjLoader 
 
 After setting up all the libraries, open `Makefile` and add your include and lib paths.
 ```Make
-INCDIR = # Include dir that contains glfw3, glad, and GLM header files
-LIBDIR = # Lib dir that contains glfw3, glad, and GLM library files
+INCDIR = # Include dir that contains glfw3, glad, GLM, TinyObjLoader header files
+LIBDIR = # Lib dir that contains glfw3 library files
 ```
 
 ## How to run
